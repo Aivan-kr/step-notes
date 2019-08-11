@@ -10,16 +10,14 @@
 </head>
 <body>
 <div class="container">
-    <% note.forEach(el => { %>
     <div class="card text-white bg-dark mt-3" style="max-width: 18rem;">
         <div class="card-header text-right"><button type="button" class="btn btn-danger">X</button></div>
         <div class="card-body">
-            <h5 class="card-title"><%= el.title%></h5>
-            <p class="card-text"><%= el.text%></p>
+            <h5 class="card-title"><%= note.title%></h5>
+            <p class="card-text"><%= note.text%></p>
             <button type="button" class="btn btn-secondary">Edit</button>
             <a href="/" class="btn btn-secondary">Go back</a>
         </div>
     </div>
-    <% }) %>
 </body>
 </html>

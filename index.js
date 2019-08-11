@@ -24,9 +24,9 @@ app.get('/', async (request, response) => {
 })
 
 app.get('/:id', async (request, response) => {
-    let note = []
+    let note
     await app.db.find({id: request.params.id}).forEach((el) => {
-        note.push(el)
+        note = el
     });
     response.render('note', {note})
 })
