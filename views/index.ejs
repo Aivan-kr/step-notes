@@ -1,30 +1,52 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <%- include('components/head') %>
-    <title>noteList</title>
+
+    <title>Document</title>
 </head>
 <body>
-<!--HEADER-->
-<header class="bg-dark p-3">
-    <h3 class="text-light">note <span class="badge badge-secondary text-uppercase">List</span></h3>
-</header>
-<!--NOTE-->
-<div class="container">
-    <% note.forEach(el => { %>
-    <div class="card text-white bg-dark mt-3 note-targ" id="note-list" style="max-width: 18rem;">
-        <div class="card-header text-right"><button type="button" class="btn btn-danger">X</button></div>
-        <div class="card-body" data-id="<%= el.id%>">
-            <h5 class="card-title"><%= el.title %></h5>
-            <p class="card-text"><%= el.text %></p>
+
+    <div class="container">
+        <!-- Ряд -->
+        <div class="row mt-5">
+            <!-- Колонка -->
+            <div class="col-6">
+                <!-- Заголовок -->
+                <h2>
+                    <span class="badge badge-secondary">Notes List</span>
+                </h2>
+            </div>
+            <!-- Колонка -->
+            <div class="col-6 text-right">
+                <!-- Кнопка добавления -->
+                <button type="button" id="addButton" class="btn btn-success">Add note</button>
+            </div>
+        </div>
+
+        <div class="row mt-5" id="notesList">
+            <!-- Вывод списка заметок -->
+            <% notes.forEach((el)=>{ %>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body" data-id="<%= el.id %>">
+                        <div class="text-right">
+                            <button type="button" data-id="<%= el.id %>" class="btn btn-danger">-</button>
+                        </div>
+                        <h5 class="card-title"><%= el.title %></h5>
+                        <p class="card-text"><%= el.text %></p>
+                        <button class="btn btn-success edit-btn" data-id="<%= el.id %>">Edit</button>
+                    </div>
+                </div>
+            </div>
+            <% }) %>
+            <!-- Шаблон карточки редактирования -->
+            
         </div>
     </div>
-    <% }) %>
-</div>
-<script src="js/index.js"></script>
+    <script src="/js/index.js"></script>
 </body>
 </html>
