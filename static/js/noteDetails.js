@@ -1,10 +1,10 @@
 async function editNote() {
+	let id = window.location.pathname.slice(7)
 	let data = {
         id: id,
-        title: getTitleVal(id, true),
-        text: getTextVal(id, true)
+        title: document.getElementById('createTitle'),
+        text: document.getElementById('createText')
     }
-    console.log(data)
     let req = await fetch(`http://localhost:3000/api/notes/${id}`, {
         method: "PUT",
         headers: {
@@ -15,6 +15,7 @@ async function editNote() {
 }
 
 async function deleteNote(){
+	let id = window.location.pathname.slice(7)
 	let data = {
         id: id
     }
