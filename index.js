@@ -1,6 +1,13 @@
 const express = require('express')
 const app = express()
-const port = 4000
+const port = 3000
+
+const bodyParser = require('body-parser')
+app.use(bodyParser.json()) 
+app.use(bodyParser.urlencoded({
+    extended: true
+})); 
+
 
 app.use(express.static(__dirname + '/static'))
 app.set('view engine', 'ejs')
@@ -23,12 +30,57 @@ app.get('/', async (request, response) => {
     response.render('index', {note})
 })
 
-app.get('/:id', async (request, response) => {
+app.get('/notes/:id', async (request, response) => {
     let note
+    console.log(request.params.id)
     await app.db.find({id: request.params.id}).forEach((el) => {
         note = el
     });
+    console.log(note)
     response.render('note', {note})
+})
+
+app.get("/notes", (req, res) => {
+	res.render("notes")
+})
+
+app.post("/api/notes", async (req, res) => {
+	try {
+        await app.db.insertOne({
+            id: `${Date.now()}`,
+            ...req.body 
+        })
+    } catch (err) {
+        console.log(err)
+    }
+    res.json({created: true})
+})
+
+app.put("/api/notes/:id", async (req, res) => {
+	try {
+		await app.db.updateOne({
+			id: req.body.id
+		}, {
+			$set: {
+				title: req.body.title,
+				text: req.body.text
+			}
+		})
+	} catch (err) {
+		console.log(err)
+	}
+	res.json({edited: true})
+})
+
+app.delete("/api/notes/:id", async (req, res) => {
+	try {
+        await app.db.deleteOne({
+            id: req.body.id
+        })
+    } catch (err) {
+        console.log(err)
+    }
+    res.json({deleted: true})
 })
 
 app.listen(port, () => {

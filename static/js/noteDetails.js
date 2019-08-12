@@ -1,0 +1,40 @@
+async function editNote() {
+	let id = window.location.pathname.slice(7)
+	let data = {
+        id: id,
+        title: document.getElementById('createTitle').value,
+        text: document.getElementById('createText').value
+    }
+    console.log(data)
+    let req = await fetch(`http://localhost:3000/api/notes/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type":"application/json"
+        },
+        body: JSON.stringify(data)
+    })
+
+    let answer = await req.json()
+    if(answer.edited){
+    	window.location.href = '/'
+    }
+}
+
+async function deleteNote(){
+	let id = window.location.pathname.slice(7)
+	let data = {
+        id: id
+    }
+    let req = await fetch(`http://localhost:3000/api/notes/${id}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type":"application/json"
+        },
+        body: JSON.stringify(data)
+    })
+    let answer = await req.json()
+    if(answer.deleted){
+    	window.location.href = '/'
+    }
+
+}

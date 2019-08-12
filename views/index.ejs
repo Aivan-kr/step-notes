@@ -10,15 +10,16 @@
 </head>
 <body>
 <!--HEADER-->
-<header class="bg-dark p-3">
+<header class="bg-dark p-3 d-flex justify-content-between">
     <h3 class="text-light">note <span class="badge badge-secondary text-uppercase">List</span></h3>
+    <a href="/notes" class="btn btn-primary">New note</a>
 </header>
 <!--NOTE-->
 <div class="container">
     <% note.forEach(el => { %>
     <div class="card text-white bg-dark mt-3 note-targ" id="note-list" style="max-width: 18rem;">
-        <div class="card-header text-right" data-id="<%= el.id %>"><button type="button" class="btn btn-danger">X</button></div>
-        <div class="card-body" data-id="<%= el.id%>">
+<!--         <div class="card-header text-right" data-id="<%= el.id %>"><button type="button" class="btn btn-danger">X</button></div>
+ -->        <div class="card-body" data-id="<%= el.id%>">
             <h5 class="card-title" data-id="<%= el.id %>"><%= el.title %></h5>
             <p class="card-text" data-id="<%= el.id %>"><%= el.text %></p>
         </div>
