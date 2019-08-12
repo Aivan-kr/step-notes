@@ -2,9 +2,10 @@ async function editNote() {
 	let id = window.location.pathname.slice(7)
 	let data = {
         id: id,
-        title: document.getElementById('createTitle'),
-        text: document.getElementById('createText')
+        title: document.getElementById('createTitle').value,
+        text: document.getElementById('createText').value
     }
+    console.log(data)
     let req = await fetch(`http://localhost:3000/api/notes/${id}`, {
         method: "PUT",
         headers: {
@@ -12,6 +13,11 @@ async function editNote() {
         },
         body: JSON.stringify(data)
     })
+
+    let answer = await req.json()
+    if(answer.edited){
+    	window.location.href = '/'
+    }
 }
 
 async function deleteNote(){
@@ -26,5 +32,9 @@ async function deleteNote(){
         },
         body: JSON.stringify(data)
     })
+    let answer = await req.json()
+    if(answer.deleted){
+    	window.location.href = '/'
+    }
 
 }
