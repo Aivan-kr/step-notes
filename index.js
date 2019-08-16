@@ -64,9 +64,9 @@ const deleteFunc = async (req, res) => {
 
 
 app.get('/', async (request, response) => {
-    let note = []
+    let objFromDb = []
     await app.db.find({}).forEach(el => {
-        note.push(el)
+        objFromDb.push(el)
     })
     response.render('index', {objFromDb})
 })
