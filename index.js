@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = process.env.PORT || 3000;
+const port = 3000
 
 const bodyParser = require('body-parser')
 app.use(bodyParser.json()) 
@@ -22,8 +22,31 @@ client.connect(err => {
     app.db = collection
 });
 
+app.get('/', async (request, response) => {
+    let note = []
+    await app.db.find({}).forEach(el => {
+        note.push(el)
+    })
+    response.render('index', {note})
+})
 
-const createFunc = async (req, res) => {
+app.get('/notes/:id', async (request, response) => {
+    let note
+    await app.db.find({id: request.params.id}).forEach((el) => {
+        note = el
+    });
+    response.render('note', {note})
+})
+
+app.get("/notes", (req, res) => {
+	res.render("notes")
+})
+
+app.get("/lists", (req, res) => {
+    res.render('to-do')
+})
+
+app.post("/api/notes", async (req, res) => {
 	try {
         await app.db.insertOne({
             id: `${Date.now()}`,
@@ -33,9 +56,9 @@ const createFunc = async (req, res) => {
         console.log(err)
     }
     res.json({created: true})
-}
+})
 
-const editFunc = async (req, res) => {
+app.put("/api/notes/:id", async (req, res) => {
 	try {
 		await app.db.updateOne({
 			id: req.body.id
@@ -49,9 +72,9 @@ const editFunc = async (req, res) => {
 		console.log(err)
 	}
 	res.json({edited: true})
-}
+})
 
-const deleteFunc = async (req, res) => {
+app.delete("/api/notes/:id", async (req, res) => {
 	try {
         await app.db.deleteOne({
             id: req.body.id
@@ -60,59 +83,7 @@ const deleteFunc = async (req, res) => {
         console.log(err)
     }
     res.json({deleted: true})
-}
-
-
-app.get('/', async (request, response) => {
-    let note = []
-    await app.db.find({}).forEach(el => {
-        note.push(el)
-    })
-    response.render('index', {note})
 })
-
-//NOTES
-
-app.get('/notes/:id', async (request, response) => {
-    let note
-    console.log(request.params.id)
-    await app.db.find({id: request.params.id}).forEach((el) => {
-        note = el
-    });
-    console.log(note)
-    response.render('note', {note})
-})
-
-app.get("/notes", (req, res) => {
-	res.render("notes")
-})
-
-app.post("/api/notes", createFunc)
-
-app.put("/api/notes/:id", editFunc)
-
-app.delete("/api/notes/:id", deleteFunc)
-
-//LISTS
-
-app.get("/lists", (req, res) => {
-	res.render("lists")
-})
-
-app.get("lists/:id", async (req, res) => {
-	let list
-    await app.db.find({id: req.params.id}).forEach((el) => {
-        list = el
-    });
-    response.render('list', {list})
-
-})
-
-app.post("/api/lists", createFunc)
-
-app.put("/api/lists/:id", editFunc)
-
-app.delete("/api/lists/:id", deleteFunc)
 
 app.listen(port, () => {
     console.log('Server: ON')
