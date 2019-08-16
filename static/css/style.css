@@ -1,0 +1,9 @@
+.unchecked .custom-control .custom-control-label {
+    text-decoration: none;
+    color: #fff;
+}
+
+.checked .custom-control .custom-control-label {
+    text-decoration: line-through;
+    color: gray;
+}

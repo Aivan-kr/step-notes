@@ -6,7 +6,7 @@ async function editNote() {
         text: document.getElementById('createText').value
     }
     console.log(data)
-    let req = await fetch(`/api/notes/${id}`, {
+    let req = await fetch(`http://localhost:3000/api/notes/${id}`, {
         method: "PUT",
         headers: {
             "Content-Type":"application/json"
@@ -25,7 +25,7 @@ async function deleteNote(){
 	let data = {
         id: id
     }
-    let req = await fetch(`/api/notes/${id}`, {
+    let req = await fetch(`http://localhost:3000/api/notes/${id}`, {
         method: "DELETE",
         headers: {
             "Content-Type":"application/json"
