@@ -68,7 +68,7 @@ app.get('/', async (request, response) => {
     await app.db.find({}).forEach(el => {
         note.push(el)
     })
-    response.render('index', {note})
+    response.render('index', {objFromDb})
 })
 
 //NOTES
