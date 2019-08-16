@@ -17,13 +17,16 @@
 <!--NOTE-->
 <div class="container">
     <% note.forEach(el => { %>
-    <div class="card text-white bg-dark mt-3 note-targ" id="note-list" style="max-width: 18rem;">
-<!--         <div class="card-header text-right" data-id="<%= el.id %>"><button type="button" class="btn btn-danger">X</button></div>
- -->        <div class="card-body" data-id="<%= el.id%>">
-            <h5 class="card-title" data-id="<%= el.id %>"><%= el.title %></h5>
-            <p class="card-text" data-id="<%= el.id %>"><%= el.text %></p>
+    <% if (el.type == "note"){ %>
+        <div class="card text-white bg-dark mt-3 note-targ" id="note-list" style="max-width: 18rem;">
+            <div class="card-body" data-id="<%= el.id%>">
+                <h5 class="card-title" data-id="<%= el.id %>"><%= el.title %></h5>
+                <p class="card-text" data-id="<%= el.id %>"><%= el.text %></p>
+            </div>
         </div>
-    </div>
+    <% }else{ %>
+        <!-- CODE FOR LIST RENDER -->
+    <% } %>
     <% }) %>
 </div>
 <script src="js/index.js"></script>
