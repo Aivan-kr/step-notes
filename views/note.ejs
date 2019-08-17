@@ -15,9 +15,9 @@
             <button type="button" class="btn btn-danger" onclick="deleteNote()">X</button>
         </div>
         <div class="card-body">
-            <input type="text" class="form-control m-1" id="createTitle" value="<%= note.title%>">
-            <textarea class="form-control m-1" id="createText" rows="5" cols="18"><%= note.text%></textarea>
-            <button type="button" class="btn btn-secondary" onclick="editNote()">Save</button>
+            <input type="text" placeholder="Title" class="form-control border-secondary mb-2" id="createTitle" value="<%= note.title%>">
+            <textarea class="form-control border-secondary mb-2" id="createText" rows="5" cols="18"><%= note.text%></textarea>
+            <button type="button" class="btn btn-primary" onclick="editNote()">Save</button>
             <a href="/" class="btn btn-secondary">Go back</a>
         </div>
     </div>

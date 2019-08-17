@@ -5,7 +5,6 @@ async function editNote() {
         title: document.getElementById('createTitle').value,
         text: document.getElementById('createText').value
     }
-    console.log(data)
     let req = await fetch(`/api/notes/${id}`, {
         method: "PUT",
         headers: {

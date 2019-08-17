@@ -1,9 +1,10 @@
-.unchecked .custom-control .custom-control-label {
+.unchecked span {
     text-decoration: none;
     color: #fff;
 }
 
-.checked .custom-control .custom-control-label {
+.checked span {
     text-decoration: line-through;
     color: gray;
 }
+

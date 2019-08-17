@@ -29,26 +29,10 @@ const createFunc = async (req, res) => {
             id: `${Date.now()}`,
             ...req.body 
         })
+        res.json({created: true})
     } catch (err) {
         console.log(err)
     }
-    res.json({created: true})
-}
-
-const editFunc = async (req, res) => {
-	try {
-		await app.db.updateOne({
-			id: req.body.id
-		}, {
-			$set: {
-				title: req.body.title,
-				text: req.body.text
-			}
-		})
-	} catch (err) {
-		console.log(err)
-	}
-	res.json({edited: true})
 }
 
 const deleteFunc = async (req, res) => {
@@ -56,19 +40,19 @@ const deleteFunc = async (req, res) => {
         await app.db.deleteOne({
             id: req.body.id
         })
+        res.json({deleted: true})
     } catch (err) {
         console.log(err)
     }
-    res.json({deleted: true})
 }
 
 
 app.get('/', async (request, response) => {
-    let note = []
+    let objFromDb = []
     await app.db.find({}).forEach(el => {
-        note.push(el)
+        objFromDb.push(el)
     })
-    response.render('index', {note})
+    response.render('index', {objFromDb})
 })
 
 //NOTES
@@ -89,28 +73,56 @@ app.get("/notes", (req, res) => {
 
 app.post("/api/notes", createFunc)
 
-app.put("/api/notes/:id", editFunc)
+app.put("/api/notes/:id", async (req, res) => {
+    try {
+        await app.db.updateOne({
+            id: req.body.id
+        }, {
+            $set: {
+                title: req.body.title,
+                text: req.body.text
+            }
+        })
+        res.json({edited: true})
+    } catch (err) {
+        console.log(err)
+    }
+})
 
 app.delete("/api/notes/:id", deleteFunc)
 
 //LISTS
 
 app.get("/lists", (req, res) => {
-	res.render("lists")
+	res.render("to-do")
 })
 
-app.get("lists/:id", async (req, res) => {
+app.get("/lists/:id", async (req, res) => {
 	let list
     await app.db.find({id: req.params.id}).forEach((el) => {
         list = el
     });
-    response.render('list', {list})
+    res.render('list', {list})
 
 })
 
 app.post("/api/lists", createFunc)
 
-app.put("/api/lists/:id", editFunc)
+app.put("/api/lists/:id",async (req, res) => {
+    try {
+        await app.db.updateOne({
+            id: req.body.id
+        }, {
+            $set: {
+                title: req.body.title,
+                items: req.body.items
+            }
+        })
+        res.json({edited: true})
+    } catch (err) {
+        console.log(err)
+    }
+})
 
 app.delete("/api/lists/:id", deleteFunc)
 

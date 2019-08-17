@@ -1,5 +1,6 @@
 async function createNote(){
     let data = {
+        type: "note",
         title: document.getElementById('createTitle').value,
         text: document.getElementById('createText').value
     }
