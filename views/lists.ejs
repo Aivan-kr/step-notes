@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <%- include('components/head')%>
+    <title>Document</title>
+</head>
+<body>
+<div class="container">
+    <div class="list-body card text-white bg-dark mt-3" style="max-width: 18rem;">
+        <div class="card-body" id="card-body">
+            <div class="row justify-content-sm-between ml-1 mr-1 mb-3 align-items-baseline">
+                <h5 class="text-light">TO-DO <span class="badge badge-secondary text-uppercase">List</span></h5>
+            </div>
+            <input type="text" placeholder="Title" class="form-control text-light border-secondary bg-dark mb-2">
+            <div class="list-item row justify-content-sm-between align-items-baseline ml-1 mr-1">
+                <input type="text" placeholder="Text" class="col-md-10 to-do-input form-control text-light border-left-0 border-top-0 border-right-0 border-bottom-2 border-secondary bg-dark">
+                <button type="button" class="remove-btn btn btn-danger mt-3 font-weight-bolder">-</button>
+            </div>
+            <button type="button" id="add-btn" class="btn btn-primary mt-3 font-weight-bolder" onclick="addListElement(); removeListElement()">+</button>
+            <button type="button" class="btn btn-success mt-3">Save</button>
+            <a href="/" class="btn btn-secondary mt-3">Go back</a>
+        </div>
+    </div>
+</div>
+
+<script src="js/to-do.js"></script>
+<script src="js/createList.js"></script>
+</body>
+</html>
