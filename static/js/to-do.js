@@ -45,6 +45,8 @@ function listStatus() {
 
 document.body.onclick = (e) => {
     console.log(e.target)
+    if (e.target.classList.contains("list-item"))
+        e.target.querySelector(".label").click()
     if (e.target.className === "label") {
         let input = textInput(e.target.innerText);
         e.target.after(input);

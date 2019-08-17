@@ -11,9 +11,7 @@ noteList.forEach(el => {
 
 todoList.forEach(el => {
     el.addEventListener('click', (event) => {
-    	if (event.target.classList.contains("card-body")) {
-	        let listId = event.target.dataset.id
-	        window.location.href = `/lists/${listId}`
-	    }
+        let listId = event.currentTarget.dataset.id
+        window.location.href = `/lists/${listId}`
     })
 })

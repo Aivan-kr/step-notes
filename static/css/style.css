@@ -8,7 +8,3 @@
     color: gray;
 }
 
-.list-targ .checked,
-.list-targ .unchecked {
-	display: inline-block;
-}

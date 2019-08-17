@@ -17,7 +17,7 @@
                 <h5 class="text-light">TO-DO <span class="badge badge-secondary text-uppercase">List</span></h5>
                 <button type="button" class="btn btn-danger" onclick="">X</button>
             </div>
-            <h5><%= list.title %></h5>
+            <input type="text" id="createTitle" value="<%= list.title %>" class="form-control border-left-0 border-top-0 border-right-0 border-bottom-2 border-secondary">
 
             <div class="unchecked">
             <% list.items.unchecked.forEach((item, index) => { %>
@@ -47,7 +47,7 @@
             </div>
             <div class="pt-3">
                 <button type="button" class="btn btn-success font-weight-bolder" onclick="addListElement(); removeListElement()">+</button>
-                <button class="btn btn-primary">Save</button>
+                <button class="btn btn-primary" onclick="editList()">Save</button>
                 <a href="/" class="btn btn-secondary">Go back</a>
             </div>
 
@@ -56,5 +56,6 @@
 </div>
 
 <script src="../js/to-do.js"></script>
+<script src="../js/listDetails.js"></script>
 </body>
 </html>
