@@ -12,43 +12,40 @@
 <!--HEADER-->
 <header class="bg-dark p-3 d-flex justify-content-between">
     <h3 class="text-light">note <span class="badge badge-secondary text-uppercase">List</span></h3>
-    <a href="/notes" class="btn btn-primary">New note</a>
+    <div>
+        <a href="/notes" class="btn btn-primary">New note</a>
+        <a href="/lists" class="btn btn-primary">New list</a>
+    </div>
 </header>
 <!--NOTE-->
 <div class="container">
 
     <% objFromDb.forEach(el => { %>
-    <% if (el.type === 'note') { %>
+        <% if (el.type === 'note') { %>
 
-    <div class="card text-white bg-dark mt-3 note-targ" id="note-list" style="max-width: 18rem;">
-        <div class="card-body" data-id="<%= el.id%>">
-            <h5 class="card-title" data-id="<%= el.id %>"><%= el.title %></h5>
-            <p class="card-text" data-id="<%= el.id %>"><%= el.text %></p>
-        </div>
-    </div>
-<!--TO-DO LIST-->
-    <% } else { %>
+            <div class="card text-white bg-dark mt-3 note-targ" id="note-list" style="max-width: 18rem;">
+                <div class="card-body" data-id="<%= el.id%>">
+                    <h5 class="card-title" data-id="<%= el.id %>"><%= el.title %></h5>
+                    <p class="card-text" data-id="<%= el.id %>"><%= el.text %></p>
+                </div>
+            </div>
+    <!--TO-DO LIST-->
+        <% } else { %>
 
-            <div class="card text-white bg-dark mt-3" onchange="listStatus()" style="max-width: 18rem;">
-                <div class="card-body" id="card-body">
+            <div class="card text-white bg-dark mt-3 list-targ" onchange="listStatus()" style="max-width: 18rem;">
+                <div class="card-body" id="card-body" data-id="<%= el.id%>">
                     <h5 class="text-light">TO-DO <span class="badge badge-secondary text-uppercase">List</span></h5>
                     <h5><%= el.title %></h5>
 
                     <div class="unchecked">
                     <% el.items.unchecked.forEach((item, index) => { %>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="c<%= index %>">
-                            <label class="custom-control-label" for="c<%= index %>"><%= item %></label>
-                        </div>
+                            <p><span><%= item %></span></p>
                     <% }) %>
                     </div>
 
                     <div class="checked">
                     <% el.items.checked.forEach((item, index) => { %>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" checked="checked" class="custom-control-input" id="u<%= index %>">
-                            <label class="custom-control-label" for="u<%= index %>"><%= item %></label>
-                        </div>
+                            <p><span><%= item %></span></p>
                     <% }) %>
                     </div>
 

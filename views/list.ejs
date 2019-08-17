@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Document</title>
+</head>
+<body>
+<div class="container" id="container" data-id="<%= list.id %>">
+    <div class="card text-white bg-dark mt-3" onchange="listStatus()" style="max-width: 18rem;">
+        <div class="card-body" id="card-body">
+            <div class="p-2 d-flex justify-content-between">
+                <h5 class="text-light">TO-DO <span class="badge badge-secondary text-uppercase">List</span></h5>
+                <button type="button" class="btn btn-danger" onclick="">X</button>
+            </div>
+            <h5><%= list.title %></h5>
+
+            <div class="unchecked">
+            <% list.items.unchecked.forEach((item, index) => { %>
+                <div class="list-item row justify-content-sm-between align-items-baseline m-1">
+                    <div class="custom-control custom-checkbox col-1">
+                        <input type="checkbox" class="custom-control-input" id="u<%= index %>">
+                        <label class="custom-control-label" for="u<%= index %>"></label>
+                    </div>
+                    <span class="label"><%= item %></span>
+                    <button type="button" class="remove-btn btn btn-danger btn-sm font-weight-bolder">-</button>
+                </div>
+
+            <% }) %>
+            </div>
+
+            <div class="checked">
+            <% list.items.checked.forEach((item, index) => { %>
+                <div class="list-item row justify-content-sm-between align-items-baseline m-1">
+                    <div class="custom-control custom-checkbox col-1">
+                        <input type="checkbox" checked="checked" class="custom-control-input" id="c<%= index %>">
+                        <label class="custom-control-label" for="c<%= index %>"></label>
+                    </div>
+                    <span class="label"><%= item %></span>
+                    <button type="button" class="remove-btn btn btn-danger btn-sm font-weight-bolder">-</button>
+                </div>
+            <% }) %>
+            </div>
+            <div class="pt-3">
+                <button type="button" class="btn btn-success font-weight-bolder" onclick="addListElement(); removeListElement()">+</button>
+                <button class="btn btn-primary">Save</button>
+                <a href="/" class="btn btn-secondary">Go back</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="../js/to-do.js"></script>
+</body>
+</html>

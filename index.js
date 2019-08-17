@@ -96,15 +96,15 @@ app.delete("/api/notes/:id", deleteFunc)
 //LISTS
 
 app.get("/lists", (req, res) => {
-	res.render("lists")
+	res.render("to-do")
 })
 
-app.get("lists/:id", async (req, res) => {
+app.get("/lists/:id", async (req, res) => {
 	let list
     await app.db.find({id: req.params.id}).forEach((el) => {
         list = el
     });
-    response.render('list', {list})
+    res.render('list', {list})
 
 })
 
