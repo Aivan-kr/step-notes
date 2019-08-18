@@ -29,7 +29,7 @@ async function editList() {
     }
 }
 
-async function deleteNote(){
+async function deleteList(){
     let id = document.getElementById("container").dataset.id;
     let data = {
         id: id
