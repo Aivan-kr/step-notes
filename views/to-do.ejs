@@ -15,12 +15,12 @@
             <div class="row justify-content-sm-between ml-1 mr-1 mb-3 align-items-baseline">
                 <h5 class="text-light">TO-DO <span class="badge badge-secondary text-uppercase">List</span></h5>
             </div>
-            <input type="text" placeholder="Title" class="form-control text-light border-secondary bg-dark mb-2">
+            <input type="text" placeholder="Title" id="listTitle" class="form-control text-light border-secondary bg-dark mb-2">
             <div class="unchecked">
                 <div class="list-item row justify-content-sm-between align-items-baseline m-1">
                     <div class="custom-control custom-checkbox col-1">
-                        <input type="checkbox" class="custom-control-input" id="u0">
-                        <label class="custom-control-label" for="u0"></label>
+                        <input type="checkbox" class="custom-control-input .input" id="u0">
+                        <label class="custom-control-label .label" for="u0"></label>
                     </div>
                     <input class="col-8 to-do-input form-control text-light border-left-0 border-top-0 border-right-0 border-bottom-2 border-secondary bg-dark">
                     <button type="button" class="remove-btn btn btn-danger btn-sm font-weight-bolder">-</button>
@@ -30,12 +30,13 @@
                 
             </div>
             <button type="button" id="add-btn" class="btn btn-primary mt-3 font-weight-bolder" onclick="addListElement(); removeListElement()">+</button>
-            <button type="button" class="btn btn-success mt-3">Save</button>
+            <button type="button" class="btn btn-success mt-3" onclick="createList()">Save</button>
             <a href="/" class="btn btn-secondary mt-3">Go back</a>
         </div>
     </div>
 </div>
 
 <script src="js/to-do.js"></script>
+<script src="js/createList.js"></script>
 </body>
 </html>
