@@ -24,9 +24,9 @@
         <% if (el.type === 'note') { %>
 
             <div class="card text-white bg-dark mt-3 note-targ" id="note-list" style="max-width: 18rem;">
-                <div class="card-body" data-id="<%= el.id%>">
-                    <h5 class="card-title" data-id="<%= el.id %>"><%= el.title %></h5>
-                    <p class="card-text" data-id="<%= el.id %>"><%= el.text %></p>
+                <div class="card-body" data-id="<%= el._id%>">
+                    <h5 class="card-title" data-id="<%= el._id %>"><%= el.title %></h5>
+                    <p class="card-text" data-id="<%= el._id %>"><%= el.text %></p>
                 </div>
             </div>
     <!--TO-DO LIST-->
@@ -37,13 +37,13 @@
                     <h5><%= el.title %></h5>
 
                     <div class="unchecked">
-                    <% el.items.unchecked.forEach((item, index) => { %>
+                    <% el.items.unchecked.forEach(item => { %>
                             <p><span><%= item %></span></p>
                     <% }) %>
                     </div>
 
                     <div class="checked">
-                    <% el.items.checked.forEach((item, index) => { %>
+                    <% el.items.checked.forEach(item => { %>
                             <p><span><%= item %></span></p>
                     <% }) %>
                     </div>
