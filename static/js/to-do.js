@@ -1,3 +1,5 @@
+const addBtn = document.querySelector('.add-btn')
+
 const textInput = val => {
     let input = document.createElement(`input`);
     input.value = val 
@@ -5,7 +7,7 @@ const textInput = val => {
     return input
 }
 
-function addListElement() {
+addBtn.addEventListener('click', function addListElement() {
     let id = document.querySelectorAll(".custom-checkbox").length
     const newInput = `<div class="list-item row justify-content-sm-between align-items-baseline m-1">
                     <div class="custom-control custom-checkbox col-1">
@@ -19,8 +21,9 @@ function addListElement() {
     const newInputContainer = document.createElement('div')
     newInputContainer.innerHTML = newInput
     cardList.appendChild(newInputContainer)
-}
+})
 
+addBtn.addEventListener('click', removeListElement)
 function removeListElement() {
     const removeBtn = document.querySelectorAll('.remove-btn')
     removeBtn.forEach(btn => {
@@ -30,7 +33,7 @@ function removeListElement() {
     })
 }
 
-function listStatus() {
+document.querySelector('.list-container').addEventListener('change', function listStatus() {
     const checkedListContainer = document.querySelector('.checked')
     const uncheckedListContainer = document.querySelector('.unchecked')
     const listItem = document.querySelectorAll('.custom-control-input')
@@ -41,7 +44,7 @@ function listStatus() {
             uncheckedListContainer.appendChild(item.parentNode.parentNode)
         }
     })
-}
+})
 
 document.body.onclick = (e) => {
     if (e.target.classList.contains("list-item"))

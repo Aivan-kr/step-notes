@@ -14,38 +14,13 @@ app.set('view engine', 'ejs')
 
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://admin:admin@test-cqqsr.mongodb.net/test?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
+const client = new MongoClient(uri, { useNewUrlParser: true }, {useUnifiedTopology: true});
 
 client.connect(err => {
     console.log('MongoDB error: ' + err)
     const collection = client.db("step_project").collection("notes");
     app.db = collection
 });
-
-
-const createFunc = async (req, res) => {
-	try {
-        await app.db.insertOne({
-            id: `${Date.now()}`,
-            ...req.body 
-        })
-        res.json({created: true})
-    } catch (err) {
-        console.log(err)
-    }
-}
-
-const deleteFunc = async (req, res) => {
-	try {
-        await app.db.deleteOne({
-            id: req.body.id
-        })
-        res.json({deleted: true})
-    } catch (err) {
-        console.log(err)
-    }
-}
-
 
 app.get('/', async (request, response) => {
     let objFromDb = []
@@ -63,15 +38,24 @@ app.get('/notes/:id', async (request, response) => {
     await app.db.find({id: request.params.id}).forEach((el) => {
         note = el
     });
-    console.log(note)
     response.render('note', {note})
 })
 
 app.get("/notes", (req, res) => {
 	res.render("notes")
 })
-
-app.post("/api/notes", createFunc)
+//create
+app.post("/api/notes", async (req, res) => {
+    try {
+        await app.db.insertOne({
+            id: `${Date.now()}`,
+            ...req.body
+        })
+        res.json({created: true})
+    } catch (err) {
+        console.log(err)
+    }
+})
 
 app.put("/api/notes/:id", async (req, res) => {
     try {
@@ -89,7 +73,16 @@ app.put("/api/notes/:id", async (req, res) => {
     }
 })
 
-app.delete("/api/notes/:id", deleteFunc)
+app.delete("/api/notes/:id", async (req, res) => {
+    try {
+        await app.db.deleteOne({
+            id: req.body.id
+        })
+        res.json({deleted: true})
+    } catch (err) {
+        console.log(err)
+    }
+})
 
 //LISTS
 
@@ -105,8 +98,18 @@ app.get("/lists/:id", async (req, res) => {
     res.render('list', {list})
 
 })
-
-app.post("/api/lists", createFunc)
+//create
+app.post("/api/lists", async (req, res) => {
+    try {
+        await app.db.insertOne({
+            id: `${Date.now()}`,
+            ...req.body
+        })
+        res.json({created: true})
+    } catch (err) {
+        console.log(err)
+    }
+})
 
 app.put("/api/lists/:id",async (req, res) => {
     try {
@@ -124,7 +127,16 @@ app.put("/api/lists/:id",async (req, res) => {
     }
 })
 
-app.delete("/api/lists/:id", deleteFunc)
+app.delete("/api/lists/:id", async (req, res) => {
+    try {
+        await app.db.deleteOne({
+            id: req.body.id
+        })
+        res.json({deleted: true})
+    } catch (err) {
+        console.log(err)
+    }
+})
 
 app.listen(port, () => {
     console.log('Server: ON')

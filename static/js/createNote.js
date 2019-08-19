@@ -1,4 +1,4 @@
-async function createNote(){
+document.querySelector('.create-note').addEventListener('click', async function createNote(){
     let data = {
         type: "note",
         title: document.getElementById('createTitle').value,
@@ -14,4 +14,4 @@ async function createNote(){
     let answer = await req.json()
     if(answer.created)
         window.location.href = '/'
-}
+})

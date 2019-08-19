@@ -1,4 +1,4 @@
-async function createList() {
+document.querySelector('.create-list').addEventListener('click', async function createList() {
     let unchecked = []
     let checked = []
 
@@ -34,4 +34,4 @@ async function createList() {
     if (answer.created) {
         window.location.href = '/'
     }
-}
+})

@@ -32,7 +32,7 @@
     <!--TO-DO LIST-->
         <% } else { %>
 
-            <div class="card text-white bg-dark mt-3 list-targ" onchange="listStatus()" style="max-width: 18rem;" data-id="<%= el.id%>">
+            <div class="card text-white bg-dark mt-3 list-targ" style="max-width: 18rem;" data-id="<%= el.id%>">
                 <div class="card-body" id="card-body" >
                     <h5 class="text-light">TO-DO <span class="badge badge-secondary text-uppercase">List</span></h5>
                     <h5><%= el.title %></h5>
@@ -54,6 +54,5 @@
     <% }}) %>
 </div>
 <script src="js/index.js"></script>
-<script src="js/to-do.js"></script>
 </body>
 </html>

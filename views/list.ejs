@@ -11,11 +11,11 @@
 </head>
 <body>
 <div class="container" id="container" data-id="<%= list.id %>">
-    <div class="card text-white bg-dark mt-3" onchange="listStatus()" style="max-width: 18rem;">
+    <div class="list-container card text-white bg-dark mt-3" style="max-width: 18rem;">
         <div class="card-body" id="card-body">
             <div class="p-2 d-flex justify-content-between">
                 <h5 class="text-light">TO-DO <span class="badge badge-secondary text-uppercase">List</span></h5>
-                <button type="button" class="btn btn-danger" onclick="deleteList()">X</button>
+                <button type="button" class="delete-btn btn btn-danger">X</button>
             </div>
             <input type="text" id="createTitle" value="<%= list.title %>" class="form-control border-left-0 border-top-0 border-right-0 border-bottom-2 border-secondary">
 
@@ -46,8 +46,8 @@
             <% }) %>
             </div>
             <div class="pt-3">
-                <button type="button" class="btn btn-success font-weight-bolder" onclick="addListElement(); removeListElement()">+</button>
-                <button class="btn btn-primary" onclick="editList()">Save</button>
+                <button type="button" class="add-btn btn btn-success font-weight-bolder">+</button>
+                <button class="save-btn btn btn-primary">Save</button>
                 <a href="/" class="btn btn-secondary">Go back</a>
             </div>
 
