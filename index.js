@@ -14,7 +14,7 @@ app.set('view engine', 'ejs')
 
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://admin:admin@test-cqqsr.mongodb.net/test?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
+const client = new MongoClient(uri, { useNewUrlParser: true }, {useUnifiedTopology: true});
 
 client.connect(err => {
     console.log('MongoDB error: ' + err)
