@@ -15,6 +15,7 @@ app.set('view engine', 'ejs')
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://admin:admin@test-cqqsr.mongodb.net/test?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true }, {useUnifiedTopology: true});
+const ObjectId = require('mongodb').ObjectId;
 
 client.connect(err => {
     console.log('MongoDB error: ' + err)
@@ -34,8 +35,7 @@ app.get('/', async (request, response) => {
 
 app.get('/notes/:id', async (request, response) => {
     let note
-    console.log(request.params.id)
-    await app.db.find({id: request.params.id}).forEach((el) => {
+    await app.db.find({_id: ObjectId(request.params.id)}).forEach((el) => {
         note = el
     });
     response.render('note', {note})
@@ -48,7 +48,6 @@ app.get("/notes", (req, res) => {
 app.post("/api/notes", async (req, res) => {
     try {
         await app.db.insertOne({
-            id: `${Date.now()}`,
             ...req.body
         })
         res.json({created: true})
@@ -60,7 +59,7 @@ app.post("/api/notes", async (req, res) => {
 app.put("/api/notes/:id", async (req, res) => {
     try {
         await app.db.updateOne({
-            id: req.body.id
+            _id: ObjectId(req.body.id)
         }, {
             $set: {
                 title: req.body.title,
@@ -76,7 +75,7 @@ app.put("/api/notes/:id", async (req, res) => {
 app.delete("/api/notes/:id", async (req, res) => {
     try {
         await app.db.deleteOne({
-            id: req.body.id
+            _id: ObjectId(req.body.id)
         })
         res.json({deleted: true})
     } catch (err) {
