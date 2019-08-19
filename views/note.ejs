@@ -12,17 +12,16 @@
 <div class="container">
     <div class="card text-white bg-dark mt-3" style="max-width: 18rem;">
         <div class="card-header text-right">
-            <button type="button" class="btn btn-danger" onclick="deleteNote()">X</button>
+            <button type="button" class="note-delete-btn btn btn-danger">X</button>
         </div>
         <div class="card-body">
             <input type="text" placeholder="Title" class="form-control border-secondary mb-2" id="createTitle" value="<%= note.title%>">
             <textarea class="form-control border-secondary mb-2" id="createText" rows="5" cols="18"><%= note.text%></textarea>
-            <button type="button" class="btn btn-primary" onclick="editNote()">Save</button>
+            <button type="button" class="note-save-btn btn btn-primary">Save</button>
             <a href="/" class="btn btn-secondary">Go back</a>
         </div>
     </div>
 </div>
-
 <script src="../js/noteDetails.js"></script>
 </body>
 </html>

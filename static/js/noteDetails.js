@@ -1,4 +1,4 @@
-async function editNote() {
+document.querySelector('.note-save-btn').addEventListener('click', async function editNote() {
 	let id = window.location.pathname.slice(7)
 	let data = {
         id: id,
@@ -17,9 +17,9 @@ async function editNote() {
     if(answer.edited){
     	window.location.href = '/'
     }
-}
+})
 
-async function deleteNote(){
+document.querySelector('.note-delete-btn').addEventListener('click', async function deleteNote(){
 	let id = window.location.pathname.slice(7)
 	let data = {
         id: id
@@ -35,5 +35,4 @@ async function deleteNote(){
     if(answer.deleted){
     	window.location.href = '/'
     }
-
-}
+})

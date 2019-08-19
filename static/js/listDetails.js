@@ -1,4 +1,4 @@
-async function editList() {
+document.querySelector('.save-btn').addEventListener('click', async function editList() {
     let id = document.getElementById("container").dataset.id;
     let checked = [];
     document.querySelectorAll(".checked .label").forEach(el => checked.push(el.innerText));
@@ -27,9 +27,10 @@ async function editList() {
     if(answer.edited){
         window.location.href = '/'
     }
-}
+})
 
-async function deleteList(){
+
+document.querySelector('.delete-btn').addEventListener('click', async function deleteList(){
     let id = document.getElementById("container").dataset.id;
     let data = {
         id: id
@@ -45,5 +46,4 @@ async function deleteList(){
     if(answer.deleted){
         window.location.href = '/'
     }
-
-}
+})
